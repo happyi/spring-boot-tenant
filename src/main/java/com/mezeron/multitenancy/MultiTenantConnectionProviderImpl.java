@@ -1,4 +1,4 @@
-package com.alonsegal.multitenancy;
+package com.mezeron.multitenancy;
 
 import org.hibernate.HibernateException;
 import org.hibernate.engine.jdbc.connections.spi.MultiTenantConnectionProvider;
@@ -9,13 +9,13 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import static com.alonsegal.multitenancy.MultiTenantConstants.DEFAULT_TENANT_ID;
-
 @Component
 public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionProvider {
 
     @Autowired
     private DataSource dataSource;
+
+    private final String DEFAULT_TENANT_ID = "db1";
 
     @Override
     public Connection getAnyConnection() throws SQLException {
@@ -31,6 +31,7 @@ public class MultiTenantConnectionProviderImpl implements MultiTenantConnectionP
     public Connection getConnection(String tenantIdentifier) throws SQLException {
         final Connection connection = getAnyConnection();
         try {
+            System.out.println("getConnection->tenantIdentifier:"+tenantIdentifier);
             if (tenantIdentifier != null) {
                 connection.createStatement().execute("USE " + tenantIdentifier);
             } else {

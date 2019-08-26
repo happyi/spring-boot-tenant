@@ -1,12 +1,12 @@
-package com.alonsegal;
+package com.mezeron;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootSchemaPerTenantApplication {
+public class SchemaPerTenantApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringbootSchemaPerTenantApplication.class, args);
+		SpringApplication.run(SchemaPerTenantApplication.class, args);
 	}
 }

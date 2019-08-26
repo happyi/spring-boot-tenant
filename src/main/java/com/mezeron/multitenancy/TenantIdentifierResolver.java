@@ -1,20 +1,20 @@
-package com.alonsegal.multitenancy;
+package com.mezeron.multitenancy;
 
 import org.hibernate.context.spi.CurrentTenantIdentifierResolver;
 import org.springframework.stereotype.Component;
 
-import static com.alonsegal.multitenancy.MultiTenantConstants.DEFAULT_TENANT_ID;
 
 @Component
 public class TenantIdentifierResolver implements CurrentTenantIdentifierResolver {
 
     @Override
     public String resolveCurrentTenantIdentifier() {
-        String tenantId = TenantContext.getCurrentTenant();
+        String tenantId =ThreadLocalUtil.getTenant();
+        System.out.println("resolveCurrentTenantIdentifier->tenantId:"+tenantId);
         if (tenantId != null) {
             return tenantId;
         }
-        return DEFAULT_TENANT_ID;
+        return "db1";
     }
 
     @Override

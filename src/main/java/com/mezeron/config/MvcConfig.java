@@ -1,4 +1,4 @@
-package com.alonsegal.config;
+package com.mezeron.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
